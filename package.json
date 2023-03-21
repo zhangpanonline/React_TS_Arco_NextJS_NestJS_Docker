@@ -2,7 +2,7 @@
   "name": "React_TS_Arco_NextJS_NestJS_Docker",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
