@@ -74,13 +74,13 @@ function App() {
     <div className="App">
       <p>代办事项</p>
       <input type="text" placeholder='What needs to be done?' value={newTodo} onInput={e => oninput(e)} onKeyUp={e => onKeyUp(e)} />
-      <ul data-testid="todo-title" >
+      <ul >
         {todos.map((todo, i) => {
           return (
             <li key={todo.id + 'a' + i}>
               <div className={ todo.id === editTodo.id ? 'hidden' : 'visible' }>
                 <input type="checkbox" checked={todo.completed} onChange={e => changeChecked(e, todo)} />
-                <span onDoubleClick={() => onDoubleClick(todo)}>{todo.title}</span>
+                <span data-test="todo-title" onDoubleClick={() => onDoubleClick(todo)}>{todo.title}</span>
                 <span onClick={() => onRemove(todo)} >×</span>
               </div>
               <input className={ todo.id === editTodo.id ? 'visible' : 'hidden' } type="text" value={editTodo.title} onInput={e => onInput(e)} onBlur={cancelEdit} onKeyUp={onUpdateTodo} />
