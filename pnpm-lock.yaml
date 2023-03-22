@@ -3,13 +3,11 @@ lockfileVersion: 5.4
 importers:
 
   .:
-    specifiers:
-      '@playwright/test': ^1.31.2
-    devDependencies:
-      '@playwright/test': 1.31.2
+    specifiers: {}
 
   packages/oh-my-react:
     specifiers:
+      '@playwright/test': ^1.31.2
       '@types/react': ^18.0.28
       '@types/react-dom': ^18.0.11
       '@vitejs/plugin-react': ^3.1.0
@@ -21,6 +19,7 @@ importers:
       react: 18.2.0
       react-dom: 18.2.0_react@18.2.0
     devDependencies:
+      '@playwright/test': 1.31.2
       '@types/react': 18.0.28
       '@types/react-dom': 18.0.11
       '@vitejs/plugin-react': 3.1.0_vite@4.2.1
