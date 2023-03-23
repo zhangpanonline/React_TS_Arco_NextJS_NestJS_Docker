@@ -1,10 +1,13 @@
 ## 项目涉及到的技术
 * [vite](https://vitejs.dev)
-* [monorepo]
+* monorepo
 * [React](https://react.dev/)
 * [Playwright](https://playwright.dev/)
 * [PnpM](https://pnpm.io/)
 * [TypeScript](https://www.typescriptlang.org/)
+* 代码commit规范
+* ESlint
+
 
 ## 代码提交规范
 ### 1. 使用commitizen规范commit提交格式
@@ -37,3 +40,6 @@ $ pnpm install -wD @commitlint/cli @commitlint/config-conventional husky
 ```bash
 $ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 ```
+
+
+## 代码规范检查
