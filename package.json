@@ -4,11 +4,15 @@
   "description": "",
   "private": true,
   "scripts": {
-    "preinstall": "npx only-allow pnpm",
+    "preinstall": "node ./scripts/preinstall.js",
     "test": "npx playwright test --headed",
     "test:report": "npx playwright show-report"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "commitizen": "^4.3.0",
+    "cz-conventional-changelog": "^3.3.0"
+  }
 }

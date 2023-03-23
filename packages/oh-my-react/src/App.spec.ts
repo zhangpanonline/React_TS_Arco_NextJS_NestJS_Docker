@@ -32,11 +32,9 @@ test.describe('新的待办', () => {
 
     await expect(newTodo).toBeEmpty()
   })
-  test('新代码应该追加在列表底部', async ({ page }) => {
-    createDefaultTodos(page)
-    // TODO
-  })
 })
+
+
 
 async function createDefaultTodos(page: Page) {
   const newTodo = page.getByTestId('What needs to be done?')
