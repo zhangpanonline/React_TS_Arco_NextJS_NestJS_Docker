@@ -2,16 +2,8 @@ import React, { useState, useEffect, useRef } from "react";
 import reactLogo from "./assets/react.svg";
 import "./App.css";
 import TodoList from './TodoList'
-import { useTodos } from './hooks'
-
-/**
- * 提取todoList组件
- * 自定义hooks
- * todoFilter 过滤组件
- * css module
- * classnames
- * styled-components
- */
+import { useTodos, useFilter } from './hooks'
+import TodoFilter from "./TodoFilter"
 
 const STORAGE_KEY = "todomvc-react"
 export type Todo = { id: number, title: string, completed: boolean }
@@ -25,9 +17,7 @@ export const todoStorage = {
 }
 export default function App() {
   const { todos, addTodos, updateTodos, removeTodo } = useTodos(todoStorage.fetch())
-
-
-
+  const { visibility, setVisibility, filteredTodos } = useFilter(todos)
   // 表示新增的待办事项的名称
   const [newTodo, setNewTodo] = useState("");
   const changeNewTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,7 +45,8 @@ export default function App() {
           onKeyUp={e => onAddTodo(e)}
         />
       </div>
-      <TodoList {...{ todos, removeTodo, updateTodos }} ></TodoList>
+      <TodoList {...{ todos: filteredTodos, removeTodo, updateTodos }} ></TodoList>
+      <TodoFilter { ...{ visibility, setVisibility } } ></TodoFilter>
     </div>
-  );
+  )
 }

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useMemo } from 'react'
 import { todoStorage, Todo } from './App'
 
 export const useTodos = (initData: Array<Todo>) => {
@@ -23,4 +23,17 @@ export const useTodos = (initData: Array<Todo>) => {
   }
 
   return { todos, setTodos, addTodos, updateTodos, removeTodo }
+}
+
+export const useFilter = (todos: Todo[]) => {
+  const [visibility, setVisibility] = useState('all')
+  const filteredTodos = useMemo(() => {
+    if (visibility === 'all') {
+      return todos
+    } else {
+      return todos.filter(v => visibility === 'active' ? !v.completed : v.completed)
+    }
+  }, [todos, visibility])
+  
+  return { visibility, setVisibility, filteredTodos  }
 }

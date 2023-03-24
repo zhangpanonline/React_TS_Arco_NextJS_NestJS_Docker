@@ -1,10 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Todo } from './App'
-export default (
-  todos: any,
-  removeTodo: any,
-  updateTodos: any,
-) => {
+import classnames from "classnames"
+export default ({ todos, removeTodo, updateTodos }: any) => {
   const changeState = (e: React.ChangeEvent<HTMLInputElement>, currentTodo: Todo) => {
     currentTodo.completed = e.target.checked
     // 必须重新设置状态，否则组件不会重新渲染
@@ -65,11 +62,7 @@ export default (
     <ul className="todo-list">
       {todos.map((todo: Todo) => (
         <li
-          className={[
-            'todo',
-            todo.completed ? 'completed' : '',
-            editedTodo.title && editedTodo.id === todo.id ? 'editing' : ''
-          ].join(' ')}
+          className={classnames('todo', { completed: todo.completed, editing: editedTodo.id === todo.id })}
           key={todo.id}>
           <div className="view">
             {/* 受控组件: 赋值和事件处理 */}
