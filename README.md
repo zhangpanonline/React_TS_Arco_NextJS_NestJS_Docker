@@ -1,6 +1,6 @@
 ## 项目涉及到的技术
 * [vite](https://vitejs.dev)
-* monorepo
+* [monorepo](/docs//monorepo.md)
 * [React](https://react.dev/)
 * [Playwright](https://playwright.dev/)
 * [PnpM](https://pnpm.io/)
@@ -43,3 +43,28 @@ $ npx husky add .husky/commit-msg 'npx --no-install commitlint --edit "$1"'
 
 
 ## 代码规范检查
+首选需要安装 eslint 和 lint-stage
+```bash
+$ pnpm install -wD eslint lint-staged @typescript-eslint/parser @typescript-eslint/eslint-plugin
+```
+在根成根目录下添加 `.eslintrc.js` 配置文件  
+lint-staged 是 Git 里的概念，表示暂存区，lint-staged 表示只检查暂存区中的文件。  
+package.json 中增加如下配置:
+```json
+"lint-staged": {
+    "*.ts": [
+      "eslint --fix",
+      "git add"
+    ]
+}
+```
+`husky` 中增加 `pre-commit` 校验：  
+```bash
+$ npx husky add .husky/pre-commit "npx --no-install lint-staged"
+```
+
+*参考链接：*
+* [pnpm + workspace + changesets 构建你的 monorepo 工程](https://juejin.cn/post/7098609682519949325)
+
+
+## [单仓多模块管理](/docs//monorepo.md)
