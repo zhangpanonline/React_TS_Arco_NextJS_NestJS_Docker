@@ -11,6 +11,8 @@
 ## NPM 包
 * [classnames](https://www.npmjs.com/package/classnames)
 * [styled-components](https://www.npmjs.com/package/styled-components)
+* [react-redux](https://react-redux.js.org/)
+* [@reduxjs/toolkit](https://redux-toolkit.js.org/)
 
 
 ## 代码提交规范
