@@ -1,8 +1,15 @@
 // 只能导进来类
 import styles from './TodoFilter.module.css'
 import styled, { css } from 'styled-components'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from './store'
+import { VisibilityFilters, setVisibilityFilter } from './store/visibilitySlice'
 
-const Button = styled.button`
+
+interface ButtonProps {
+  readonly selected: boolean
+}
+const Button = styled.button<ButtonProps>`
   border-radius: 8px;
   border: 1px solid transparent;
   padding: 0.6em 1.2em;
@@ -20,25 +27,26 @@ const Button = styled.button`
   ${(props: any) => props.selected && css`
     border-color: #646cff;
   `}
-`;
+`
 
-export default function TodoFilter({ visibility, setVisibility }: any) {
+export default function TodoFilter() {
+
+  const visibility = useSelector((state: RootState) => state.visibility)
+  const dispatch = useDispatch()
 
   const onClick = (v: string): void => {
-    setVisibility(v)
+    dispatch(setVisibilityFilter(v))
   }
 
   return (
     <ul className={ styles.filters } >
-      {['all', 'active', 'completed'].map(v => (
+      {Object.keys(VisibilityFilters).map(v => (
         <li className={ styles.filtersLi } key={v} >
-          <Button
-            selected={visibility === v}
-            onClick={() => onClick(v)} >
+          <Button selected={visibility === v} onClick={() => onClick(v)} >
             {v}
           </Button>
         </li>
-        ))}
+      ))}
     </ul>
   )
 }

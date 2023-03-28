@@ -1,9 +1,15 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './counterSlice'
+import todosReducer from './todosSlice'
+import visibilityReducer from './visibilitySlice'
+import storageMiddleware from '../utils/storage'
 
 export const store = configureStore({
+  middleware: (gDM) => gDM().concat(storageMiddleware),
   reducer: {
-    counter: counterReducer
+    counter: counterReducer,
+    todos: todosReducer,
+    visibility: visibilityReducer
   }
 })
 

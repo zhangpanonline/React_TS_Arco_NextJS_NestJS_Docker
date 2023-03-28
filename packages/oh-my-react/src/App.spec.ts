@@ -1,8 +1,8 @@
-import { test, expect, type Page } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test'
 
 test.beforeEach(async ({ page }) => {
-  await page.goto('localhost:5173');
-});
+  await page.goto('localhost:5173')
+})
 
 const TODO_ITEMS = [
   'buy some cheese',
