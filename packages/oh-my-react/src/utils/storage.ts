@@ -2,7 +2,7 @@ import type { PayloadAction } from '@reduxjs/toolkit'
 import { todoStorage } from '../store/todosSlice'
 
 // TODO
-const storageMiddleware = (store) => (next: (arg0: { payload: void; type: string }) => void) => (action: PayloadAction) => {
+const storageMiddleware = (store) => (next) => (action: PayloadAction) => {
   if (action.type.startsWith('todos/')) {
     next(action)
     todoStorage.save(store.getState().todos.todos)
@@ -10,7 +10,5 @@ const storageMiddleware = (store) => (next: (arg0: { payload: void; type: string
     next(action)
   }
 }
-
-
 
 export default storageMiddleware
