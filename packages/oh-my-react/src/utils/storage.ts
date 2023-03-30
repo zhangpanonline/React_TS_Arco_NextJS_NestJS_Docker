@@ -1,8 +1,7 @@
-import type { PayloadAction } from '@reduxjs/toolkit'
+import type { Middleware } from '@reduxjs/toolkit'
 import { todoStorage } from '../store/todosSlice'
 
-// TODO
-const storageMiddleware = (store) => (next) => (action: PayloadAction) => {
+const storageMiddleware: Middleware = (store) => (next) => (action) => {
   if (action.type.startsWith('todos/')) {
     next(action)
     todoStorage.save(store.getState().todos.todos)

@@ -3,6 +3,7 @@ import classnames from 'classnames'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectFilteredTodos, removeTodo, updateTodos } from './store/todosSlice'
 import type { Todo } from './store/todosSlice'
+import { Link } from 'react-router-dom'
 export default () => {
   const todos = useSelector(selectFilteredTodos)
   const dispatch = useDispatch()
@@ -75,7 +76,8 @@ export default () => {
               checked={todo.completed}
               onChange={(e) => changeState(e, todo)}
             />
-            <span onDoubleClick={() => editTodo(todo)}>{todo.title}</span>
+            {/* <span onDoubleClick={() => editTodo(todo)}>{todo.title}</span> */}
+            <Link to={ `/edit/${todo.id}` } >{ todo.title }</Link>
             <button className="destroy" onClick={() => dispatch(removeTodo(editedTodo.id))}>
                 X
             </button>

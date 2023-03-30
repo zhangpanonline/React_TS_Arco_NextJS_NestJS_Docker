@@ -5,7 +5,7 @@ import visibilityReducer from './visibilitySlice'
 import storageMiddleware from '../utils/storage'
 
 export const store = configureStore({
-  middleware: (gDM) => gDM().concat(storageMiddleware),
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(storageMiddleware),
   reducer: {
     counter: counterReducer,
     todos: todosReducer,
