@@ -1,6 +1,7 @@
 import { configureStore } from '@reduxjs/toolkit'
 import counterReducer from './counterSlice'
 import todosReducer from './todosSlice'
+import userReducer from './userSlice'
 import visibilityReducer from './visibilitySlice'
 import storageMiddleware from '../utils/storage'
 
@@ -9,7 +10,8 @@ export const store = configureStore({
   reducer: {
     counter: counterReducer,
     todos: todosReducer,
-    visibility: visibilityReducer
+    visibility: visibilityReducer,
+    user: userReducer
   }
 })
 

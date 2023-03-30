@@ -5,6 +5,8 @@ import Login from './Login'
 import EditTodo from './EditTodo'
 import { updateTodos } from './store/todosSlice'
 import { store } from './store'
+import RequireAuth from './RequireAuth'
+import ErrorPage from './ErrorPage'
 
 export async function editTodoAction({ request, params }: ActionFunctionArgs) {
   const formData = await request.formData()
@@ -22,7 +24,12 @@ export async function editTodoAction({ request, params }: ActionFunctionArgs) {
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <App></App>
+    element: (
+      <RequireAuth>
+        <App></App>
+      </RequireAuth>
+    ),
+    errorElement: <ErrorPage></ErrorPage>
   },
   {
     path: '/login',
@@ -31,7 +38,11 @@ const router = createBrowserRouter([
   {
     // http://127.0.0.1:5173/edit/1
     path: '/edit/:id',
-    element: <EditTodo></EditTodo>,
+    element: (
+      <RequireAuth>
+        <EditTodo></EditTodo>
+      </RequireAuth>
+    ),
     action: editTodoAction
   }
 ])

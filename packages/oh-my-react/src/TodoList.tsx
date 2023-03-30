@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { selectFilteredTodos, removeTodo, updateTodos } from './store/todosSlice'
 import type { Todo } from './store/todosSlice'
 import { Link } from 'react-router-dom'
+import AuthWrapper from './AuthWrapper'
+import { Role } from './store/userSlice'
 export default () => {
   const todos = useSelector(selectFilteredTodos)
   const dispatch = useDispatch()
@@ -78,9 +80,11 @@ export default () => {
             />
             {/* <span onDoubleClick={() => editTodo(todo)}>{todo.title}</span> */}
             <Link to={ `/edit/${todo.id}` } >{ todo.title }</Link>
-            <button className="destroy" onClick={() => dispatch(removeTodo(editedTodo.id))}>
-                X
-            </button>
+            <AuthWrapper roles={[Role.admin]} >
+              <button className="destroy" onClick={() => dispatch(removeTodo(editedTodo.id))}>
+                  X
+              </button>
+            </AuthWrapper>
           </div>
           {/* 声明editedTodo状态, onChange处理状态变化 */}
           {/* onKeyUp处理修改确认，onBlur退出编辑模式 */}
