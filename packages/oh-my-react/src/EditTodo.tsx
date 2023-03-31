@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import type { RootState } from './store/index'
 import { useForm, SubmitHandler  } from 'react-hook-form'
 import { Todo, updateTodos } from './store/todosSlice'
+import { useTitle } from 'ahooks'
 export default function EditTodo() {
   const { id } = useParams()
   const todo = useSelector((state: RootState) => state.todos.todos.find(v => v.id === +id!) || { id: -1, title: '', completed: false })
@@ -17,6 +18,8 @@ export default function EditTodo() {
     dispatch(updateTodos(data))
     navigate('/')
   }
+
+  useTitle(todo.title + ' | edit')
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} >

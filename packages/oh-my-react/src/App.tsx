@@ -6,6 +6,18 @@ import AuthWrapper from './AuthWrapper'
 import { Role, selectRole, setRole } from './store/userSlice'
 import { useSelector, useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
+import { useRequest, useTitle } from 'ahooks'
+import { useEffect } from 'react'
+import { setTodos } from './store/todosSlice'
+
+function getTodos() {
+  return new Promise(resolve => {
+    setTimeout(() => {
+      resolve(JSON.parse(localStorage.getItem('todomvc-react') || '[]'))
+    }, 2000)
+  })
+}
+
 export default function App() {
   const role = useSelector(selectRole)
   const dispatch = useDispatch()
@@ -16,6 +28,16 @@ export default function App() {
     navigate('/login')
   }
 
+  useTitle('TodoMVC')
+
+  const { data, loading } = useRequest(getTodos)
+
+  useEffect(() => {
+    if (data) {
+      dispatch(setTodos(data))
+    }
+  }, [data])
+
   return (
     <div className="App">
       <h2>你好，{role}</h2>
@@ -25,7 +47,7 @@ export default function App() {
       <AuthWrapper roles={[Role.admin]}>
         <AddTodo></AddTodo>
       </AuthWrapper>
-      <TodoList></TodoList>
+      { loading ? <p>loading...</p> : <TodoList></TodoList> }
       <TodoFilter></TodoFilter>
     </div>
   )

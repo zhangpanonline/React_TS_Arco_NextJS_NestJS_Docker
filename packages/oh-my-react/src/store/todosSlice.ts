@@ -38,6 +38,9 @@ const todosSlice = createSlice({
         completed: false
       })
     },
+    setTodos: (state, action: PayloadAction<Todo[]>) => {
+      state.todos = action.payload
+    },
     updateTodos: (state, action: PayloadAction<Todo>) => {
       const todo = state.todos.find(v => v.id === action.payload.id)
       if (!todo) return
@@ -65,6 +68,6 @@ export const selectFilteredTodos = createSelector(
   }
 )
 
-export const { addTodos, updateTodos, removeTodo } = todosSlice.actions
+export const { addTodos, updateTodos, removeTodo, setTodos } = todosSlice.actions
 
 export default todosSlice.reducer
