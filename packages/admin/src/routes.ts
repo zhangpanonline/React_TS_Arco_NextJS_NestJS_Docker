@@ -2,13 +2,11 @@ import auth, { AuthParams } from '@/utils/authentication';
 import { useEffect, useMemo, useState } from 'react';
 
 export type IRoute = AuthParams & {
-  name: string;
-  key: string;
-  // 当前页是否展示面包屑
-  breadcrumb?: boolean;
+  name: string; // locale 包中的key
+  key: string; // 唯一区分菜单项，也是路由path，决定icon
+  breadcrumb?: boolean; // 是否显示在面包屑中
   children?: IRoute[];
-  // 当前路由是否渲染菜单项，为 true 的话不会在菜单中显示，但可通过路由地址访问。
-  ignore?: boolean;
+  ignore?: boolean; // 当前路由是否渲染菜单项，为 true 的话不会在菜单中显示，但可通过路由地址访问。
 };
 
 export const routes: IRoute[] = [
@@ -21,6 +19,10 @@ export const routes: IRoute[] = [
         key: 'dashboard/workplace',
       },
     ],
+  },
+  {
+    name: 'menu.user',
+    key: 'user'
   },
   {
     name: 'Example',

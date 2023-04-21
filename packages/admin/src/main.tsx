@@ -67,7 +67,10 @@ function Index() {
   };
 
   return (
+    // A <BrowserRouter> stores the current location in the browser's address bar using clean URLs and navigates using the browser's built-in history stack.
+    // BrowserRouter 将当前地址存储在浏览器地址栏中，并且使用浏览器内置的历史堆栈进行导航
     <BrowserRouter>
+      {/* 在应用的最外层进行配置，一次设置，全局生效。一般用于设置国际化语言等功能 */}
       <ConfigProvider
         locale={getArcoLocale()}
         componentConfig={{
@@ -82,7 +85,9 @@ function Index() {
           },
         }}
       >
+        {/* 将 React 与 React-Redux 结合起来，可以在组件里使用 useSelector useDispatch 等 hook 访问 store 里的数据 */}
         <Provider store={store}>
+          {/* 所有被 GlobalContext.Provider 包裹的组件，无论这个组件有多深，都可以访问到 value 属性的值 */}
           <GlobalContext.Provider value={contextValue}>
             <Switch>
               <Route path="/login" component={Login} />

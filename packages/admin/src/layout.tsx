@@ -39,6 +39,14 @@ function getIconFromKey(key) {
 }
 
 function getFlattenRoutes(routes) {
+  // Vite 支持使用特殊的 import.meta.glob 函数从文件系统导入多个模块
+  // const modules = import.meta.glob('./dir/*.js')
+  // 以上将会被转译为下面的样子：
+  // const modules = {
+  //   './dir/foo.js': () => import('./dir/foo.js'),
+  //   './dir/bar.js': () => import('./dir/bar.js'),
+  // }
+
   const mod = import.meta.glob('./pages/**/[a-z[]*.tsx');
   const res = [];
   function travel(_routes) {
