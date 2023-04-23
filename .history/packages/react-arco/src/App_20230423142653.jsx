@@ -14,7 +14,7 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <nav>
-          <NavLink to='/dashboard' ><IconDashboard />dashboard</NavLink>
+          <NavLink to='/dashboard' >dashboard</NavLink>
           |||
           <NavLink to='/example' >example</NavLink>
         </nav>
